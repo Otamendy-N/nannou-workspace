@@ -1,0 +1,3 @@
+[workspace]
+members = ["pendulum", "ray_casting", "lava_lamp", "basic_data_structures"]
+resolver = "2"
