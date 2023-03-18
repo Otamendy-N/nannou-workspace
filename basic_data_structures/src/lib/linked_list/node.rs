@@ -2,14 +2,14 @@ pub type Link<T> = Option<Box<Node<T>>>;
 
 #[derive(Clone)]
 pub struct Node<T> {
-    pub data: T,
+    pub data: Box<T>,
     pub next: Link<T>,
 }
 
-impl<T: Copy> Node<T> {
+impl<T: Clone> Node<T> {
     pub fn new(value: T) -> Node<T> {
         Node {
-            data: value,
+            data: Box::new(value),
             next: None,
         }
     }
