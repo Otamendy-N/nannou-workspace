@@ -83,9 +83,6 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 [[package]]
 name = "basic_data_structures"
 version = "0.1.0"
-dependencies = [
- "nannou",
-]
 
 [[package]]
 name = "bit-set"
@@ -525,6 +522,13 @@ name = "downcast-rs"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9ea835d29036a4087793836fa931b08837ad5e957da9e23886b29586fb9b6650"
+
+[[package]]
+name = "ds_tests"
+version = "0.1.0"
+dependencies = [
+ "basic_data_structures",
+]
 
 [[package]]
 name = "either"

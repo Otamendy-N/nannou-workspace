@@ -1,6 +1,14 @@
-use crate::lib::linked_list::{queue::Queue, stack::Stack};
+use crate::{hash_table::HashTable, linked_list::LinkedList, queue::Queue, stack::Stack};
 
-use super::lib::linked_list::LinkedList;
+#[test]
+fn hash_table() {
+    let mut table = HashTable::new();
+
+    table.insert("hola mundooo".to_string());
+    table.insert("nouuuuuuuuuu".to_string());
+    table.insert("bueno ojala funque".to_string());
+    table.insert("siuu".to_string());
+}
 
 #[test]
 fn queue() {
@@ -55,11 +63,14 @@ fn list() {
     list.append(":D".to_string());
 
     assert_eq!(list.size(), 3);
-    assert_eq!(list.find_as_reference(|n| { n == "hola"}), Some(&"hola".to_string()));
+    assert_eq!(
+        list.find_as_reference(|n| { n == "hola" }),
+        Some(&"hola".to_string())
+    );
     assert_eq!(list.size(), 3);
-    let seven = list.find_as_mut_reference(|n| { n == "mundo"});
+    let seven = list.find_as_mut_reference(|n| n == "mundo");
     let seven = seven.unwrap();
     seven.clear();
-    assert_eq!(list.find(|x| { x == ""}), Some("".to_string()));
+    assert_eq!(list.find(|x| { x == "" }), Some("".to_string()));
     assert_eq!(list.size(), 2);
 }

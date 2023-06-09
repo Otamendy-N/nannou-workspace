@@ -1,10 +1,9 @@
 [package]
-name = "basic_data_structures"
+name = "ds_tests"
 version = "0.1.0"
 edition = "2021"
-resolver = "2"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[lib]
-name = "basic_data_structures"
+[dependencies]
+basic_data_structures = { path = "../basic_data_structures"}

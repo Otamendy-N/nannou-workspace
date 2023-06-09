@@ -1,9 +1,7 @@
-use std::fmt::Display;
+use std::fmt::{Display, Write};
 
 // Importing the Node and Link types from the node module
-mod node;
-pub mod queue;
-pub mod stack;
+pub mod node;
 use node::Link;
 
 /// A singly linked list that stores values of type `T`.
@@ -23,8 +21,27 @@ use node::Link;
 /// assert_eq!(list.size(), 0);
 /// ```
 pub struct LinkedList<T> {
-    head: Link<T>,
-    size: usize,
+    pub head: Link<T>,
+    pub size: usize,
+}
+
+impl<T: Clone + Display> Clone for LinkedList<T> {
+    fn clone(&self) -> Self {
+        Self { head: self.head.clone(), size: self.size.clone() }
+    }
+}
+
+impl<T: Clone + Display> Display for LinkedList<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let mut current = &self.head;
+        let mut text = String::new();
+        while let Some(node) = current {
+            text = format!("{} -> {}", text, node.data);
+            current = &node.next;
+        }
+
+        text.fmt(f)
+    }
 }
 
 impl<T: Clone + Display> LinkedList<T> {
@@ -46,6 +63,34 @@ impl<T: Clone + Display> LinkedList<T> {
         LinkedList {
             head: None,
             size: 0,
+        }
+    }
+
+    pub fn for_each_mut<F>(&mut self, lamda: F)
+        where F: Fn(&mut T, usize)
+    {
+        if self.head.is_none() { return; }
+        let mut current = self.head.as_mut().unwrap();
+        let mut cont: usize = 0;
+
+        while current.next.is_some() {
+            lamda(&mut current.data, cont);
+            cont += 1;
+            current = current.next.as_mut().unwrap()
+        }
+    }
+
+    pub fn for_each<F>(&self, lamda: F)
+        where F: Fn(&T, usize)
+    {
+        if self.head.is_none() { return; }
+        let mut current = self.head.as_ref().unwrap();
+        let mut cont: usize = 0;
+
+        while current.next.is_some() {
+            lamda(&current.data, cont);
+            current = current.next.as_ref().unwrap();
+            cont += 1;
         }
     }
 

@@ -1,4 +1,5 @@
-use super::{node::Node, LinkedList};
+use crate::linked_list::{LinkedList, node::Node};
+
 
 /// A generic trait for implementing a queue, which is a data structure that stores a collection
 /// of elements in a first-in, first-out (FIFO) order.

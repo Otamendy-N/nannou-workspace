@@ -1,4 +1,5 @@
-use super::{LinkedList, node::Node};
+use crate::linked_list::{LinkedList, node::Node};
+
 
 /// A trait representing a stack data structure that can store values of type `T`.
 pub trait Stack<T> {
